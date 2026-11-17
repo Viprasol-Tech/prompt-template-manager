@@ -63,15 +63,17 @@ registry.register(
     )
 )
 
-template = registry.latest("summarize")          # -> version 2
-print(template.required_variables)               # ['sentences', 'style', 'text']
+template = registry.latest("summarize")  # -> version 2
+print(template.required_variables)  # ['sentences', 'style', 'text']
 
 prompt = template.render(style="technical", sentences=3, text="...")
 
+
 # The library stops at the rendered string. Hand it to ANY model client:
-def my_llm(prompt: str) -> str:                  # Callable[[str], str]
-    ...                                          # openai / anthropic / local / fake
+def my_llm(prompt: str) -> str:  # Callable[[str], str]
+    ...  # openai / anthropic / local / fake
     return "..."
+
 
 answer = my_llm(prompt)
 
